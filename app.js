@@ -6,7 +6,8 @@ const express      = require('express'),
       session      = require('express-session'),
       bodyParser   = require('body-parser'),
       cookieParser = require('cookie-parser'),
-      flash        = require('connect-flash')
+      flash        = require('connect-flash'),
+      path         = require('path')
 
 const app = express()
 
@@ -21,8 +22,7 @@ mongoose.connect('mongodb://localhost:27017/test', {
 app.use(flash());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-const path = require('path');
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname,'public'))) //PUBLIC DIRECTORY
 app.engine('handlebars', exphbs())
 app.set('view engine', 'handlebars')
 app.use(cookieParser());
@@ -44,7 +44,9 @@ app.use('/auth', auth)
 
 //VIEWS
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('home',{
+      user: req.user.local
+    })
 })
 
 const port = process.env.PORT || 21068

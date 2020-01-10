@@ -1,9 +1,17 @@
-{{#if message}}
-    <p>{{message}}</p>
-{{/if}}
-<form action="/auth/signup" method="post">
-    <input type="text" name="username" value="admin" required>
-    <input type="password" name="password" value="admin" required>
-    <button type="submit">Registrar</button>
-</form>
-<a href="/auth/login">Já tenho conta</a>
+<section class="sign-container">
+	<div class="sign">
+		<div class="sign-form">
+			<h2>Welcome</h2>
+			<form action="/auth/signup" method="post">
+		    	<input type="text" name="username" required>
+		    	<input type="password" name="password" required>
+		    	<button type="submit">SIGN UP</button>
+			</form>
+			{{#if message}}
+		    	<div class="alert-danger">{{message}}</div>
+			{{/if}}
+			<a href="/auth/login">I have an account</a>
+		</div>
+		
+	</div>
+</section>

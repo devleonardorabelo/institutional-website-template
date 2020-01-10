@@ -11,7 +11,7 @@ async function verifyUser(req, res, next) {
 }
 router.get('/', verifyUser, (req, res) => {
     res.render('panel/home', {
-        user: req.user
+        user: req.user.local
     })
 })
 module.exports = router

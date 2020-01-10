@@ -25,9 +25,9 @@ function(req, username, password, done) {
             if (err)
                 return done(err);
             if (!user)
-                return done(null, false, req.flash('loginMessage', 'Usuário não encontrado'));
+                return done(null, false, req.flash('loginMessage', 'user not found'));
             if (!user.validPassword(password))
-                return done(null, false, req.flash('loginMessage', 'Senha incorreta'));
+                return done(null, false, req.flash('loginMessage', 'incorrect password'));
             else // all right? User logged (TUDO CERTO? USUARIO LOGADO)
                 return done(null, user);
         });
@@ -55,7 +55,7 @@ function(req, username, password, done) {
 
             // check to see if there's already a user with that username (checa se existe algum usuario com o mesmo nome)
             if (existingUser) 
-                return done(null, false, req.flash('signupMessage', 'Este usuario já está em uso!'));
+                return done(null, false, req.flash('signupMessage', 'This user is already in use'));
 
             //  If we're logged in, we're connecting a new local account. (se estiver logado, nós conectamos na nova conta local)
             if(req.user) {
