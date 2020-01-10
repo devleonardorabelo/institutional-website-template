@@ -1,8 +1,8 @@
 # passportnodejs
 a local login system using passport
 
-
-npm i <- Install all modules
-
 Hello! xD
-Doubts? send email me an email : leonardomrabelo@gmail.com
+npm i <- Install all dependencies
+
+
+Doubts? send me an email : leonardomrabelo@gmail.com
