@@ -1,8 +1,6 @@
-# passportnodejs
-a local login system using passport
+# INSTITUTIONAL WEBSITE TEMPLATE
+A INSTITUTIONAL WEBSITE TEMPLATE USING EXPRESS, HANDLEBARS AND MONGOOSE
 
-Hello! xD
+
 npm i <- Install all dependencies
-
-
 Doubts? send me an email : leonardomrabelo@gmail.com
