@@ -1,6 +1,7 @@
 var LocalStrategy    = require('passport-local').Strategy,
     User             = require('../models/user'),
-    passport         = require('passport')
+    passport         = require('passport'),
+    bcrypt           = require('bcryptjs')
 
 
 passport.serializeUser(function(user, done) {
@@ -18,36 +19,37 @@ passport.use('local-login', new LocalStrategy({
     passwordField : 'password',
     passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 },
-function(req, username, password, done) {
-    // asynchronous
-    process.nextTick(function() {
-        User.findOne({ 'local.username' :  username }, function(err, user) {
-            if (err)
-                return done(err);
-            if (!user)
-                return done(null, false, req.flash('loginMessage', 'user not found'));
-            if (!user.validPassword(password))
+async (req, username, password, done) => {
+
+    User.findOne({ 'username' :  username }, async (err, user) => {
+        console.log(user.password)
+        if (err)
+            return done(err);
+        if (!user)
+            return done(null, false, req.flash('loginMessage', 'user not found'));
+
+        bcrypt.compare(password, user.password, (err, success) => {
+            if (success){
+                return done(null, user)
+            }else{
                 return done(null, false, req.flash('loginMessage', 'incorrect password'));
-            else // all right? User logged (TUDO CERTO? USUARIO LOGADO)
-                return done(null, user);
-        });
+            }
+        })
     });
 
 }));
 
 passport.use('local-signup', new LocalStrategy({
     // INPUTS FOR REGISTER (INPUTS QUE SERVIRÃO PARA REGISTRO)
-    usernameField : 'username',
-    passwordField : 'password',
+    usernameField     : 'username',
+    passwordField     : 'password',
     passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 },
-function(req, username, password, done) {
+async (req, username, password, done) => {
 
-    // asynchronous
-    process.nextTick(function() {
 
         //  to know if the username is in use.(para saber se o nome de usuario está em uso)
-        User.findOne({'local.username': username}, async (err, existingUser) => {
+        User.findOne({'username': username}, async (err, existingUser) => {
 
             // if there are any errors, return the error (se nao tiver algum erro, retorna o erro)
             if (err)
@@ -57,34 +59,22 @@ function(req, username, password, done) {
             if (existingUser) 
                 return done(null, false, req.flash('signupMessage', 'This user is already in use'));
 
-            //  If we're logged in, we're connecting a new local account. (se estiver logado, nós conectamos na nova conta local)
-            if(req.user) {
-                var user            = req.user;
-                user.local.username = username;
-                user.local.password = user.generateHash(password);
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
+            // create the user
+            let passwordHash = await bcrypt.hash(password, 10)
+            let newUser = await {
+                username: username,
+                password: passwordHash
             } 
-            //  We're not logged in, so we're creating a brand new user.
-            else {
-                // create the user
-                var newUser            = new User();
+            new User(newUser).save(function(err, user) {
+                if (err)
+                    throw err;
 
-                newUser.local.username = username;
-                newUser.local.password = newUser.generateHash(password);
-
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-
-                    return done(null, newUser);
-                });    
-            }
+                return done(null, user);
+            });
+ 
+            
 
         });
-    });
+
 
 }));

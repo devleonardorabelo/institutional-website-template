@@ -1,6 +1,6 @@
 const express = require('express'),
       router  = express.Router(),
-      local   = require('../config/passport')
+      Product = require('../models/product')
       
 async function verifyUser(req, res, next) {
     if(req.user){
@@ -13,5 +13,8 @@ router.get('/', verifyUser, (req, res) => {
     res.render('admin/home', {
         user: req.user
     })
+})
+router.get('/add/product', (req, res) => {
+    
 })
 module.exports = router

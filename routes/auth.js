@@ -1,6 +1,7 @@
 const express  = require('express'),
 	  router   = express.Router(),
 	  passport = require('passport');
+	  require('../config/passport')
 	  
 // AUTH CHECK
 function isLoggedIn(req, res, next) {
@@ -16,7 +17,7 @@ router.get('/login', (req, res) => {
 
 // POST LOGIN
 router.post('/login', passport.authenticate('local-login', {
-	successRedirect : '/panel',
+	successRedirect : '/admin',
 	failureRedirect : '/auth/login',
 	failureFlash : true
 }));
@@ -28,7 +29,7 @@ router.get('/signup', (req, res) => {
 
 // POST SIGNUP
 router.post('/signup', passport.authenticate('local-signup', {
-	successRedirect : '/panel',
+	successRedirect : '/admin',
 	failureRedirect : '/auth/signup',
 	failureFlash : true
 }));

@@ -37,15 +37,15 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 //ROUTES
-const panel = require('./routes/panel'),
+const admin = require('./routes/admin'),
       auth  = require('./routes/auth')
-app.use('/panel', panel)
+app.use('/admin', admin)
 app.use('/auth', auth)
 
 //VIEWS
 app.get('/', (req, res) => {
     res.render('home',{
-      user: req.user.local
+      user: req.user
     })
 })
 
