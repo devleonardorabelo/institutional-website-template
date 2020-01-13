@@ -1,6 +1,12 @@
 # INSTITUTIONAL WEBSITE TEMPLATE
-A INSTITUTIONAL WEBSITE TEMPLATE USING EXPRESS, HANDLEBARS AND MONGOOSE
+A INSTITUTIONAL WEBSITE TEMPLATE USING EXPRESS, HANDLEBARS, MONGOOSE AND MORE
 
+## Development
 
-npm i <- Install all dependencies
+For install all dependencies, use:
+
+```
+npm install
+```
+
 Doubts? send me an email : leonardomrabelo@gmail.com
