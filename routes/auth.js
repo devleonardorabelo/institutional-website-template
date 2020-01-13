@@ -1,6 +1,7 @@
 const express  = require('express'),
 	  router   = express.Router(),
-	  passport = require('passport');
+	  passport = require('passport'),
+	  User     = require('../models/user')
 	  require('../config/passport')
 	  
 // AUTH CHECK
@@ -11,7 +12,11 @@ function isLoggedIn(req, res, next) {
 }
 
 // LOGIN 
-router.get('/login', (req, res) => {
+router.get('/login', async (req, res) => {
+	let findUser = await User.findOne()
+	if(!findUser)
+		return res.redirect('/auth/signup')
+
 	res.render('login', { message: req.flash('loginMessage') });
 });
 
@@ -23,7 +28,11 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 
 //SIGNUP 
-router.get('/signup', (req, res) => {
+router.get('/signup', async (req, res) => {
+	let findUser = await User.findOne()
+	if(findUser)
+		return res.redirect('/auth/login')
+		
 	res.render('signup', { message: req.flash('signupMessage') });
 });
 

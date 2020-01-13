@@ -9,7 +9,12 @@ var userSchema = mongoose.Schema({
     	type: String,
         required: true
     },
-    admin: Boolean
+    email: String,
+    business: String,
+    phone: String,
+    city: String,
+    state: String,
+    cep: String
 })
 
 module.exports = mongoose.model('User', userSchema);

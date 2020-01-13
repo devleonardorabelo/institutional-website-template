@@ -1,17 +1,144 @@
-<section class="sign-container">
-	<div class="sign">
-		<div class="sign-form">
-			<h2>Welcome</h2>
-			<form action="/auth/signup" method="post">
-		    	<input type="text" name="username" required>
-		    	<input type="password" name="password" required>
-		    	<button type="submit">SIGN UP</button>
+<section class="container" style="height: 100vh;">
+	<div class="row h-100">
+		<div class="col-md-6 d-flex flex-column m-auto">
+			
+			<form action="/auth/signup" method="post" id="form">
+				<div id="form-1">
+					<div class="w-100 text-center mb-3"><img src="/img/logo.png"></div>
+					<h3 class="mb-0">Cadastro do usuário</h3>
+					<p>Crie agora um usuário para o seu painel administrativo</p>		
+					<div class="form-group">
+						<label for="username">Usuario</label>
+						<input type="text" name="username" id="username" class="form-control" required>
+					</div>
+					<div class="form-group">
+					<label for="password">Senha</label>
+						<input type="password" name="password" id="password" class="form-control" required>
+						<small id="helpId" class="text-muted">Dica: Crie uma senha forte com letras e números</small>
+					</div>
+					<div class="form-group">
+						<label for="confirmPassword">Confirme a Senha</label>
+						<input type="password" name="confirmPassword" id="confirmPassword" class="form-control" required>
+						<small id="smallPassword" class="text-muted" style="color: red !important; font-size: 12pt"></small>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" class="form-control" required>
+					</div>
+					<div class="form-group form-row">
+						<div class="col">
+								
+						</div>
+						<div class="col">
+							<button class="btn btn-primary w-100" type="button" id="nextForm">Próximo</button>
+						</div>	
+					</div>
+				</div>
+				<div id="form-2" style="display: none;">
+					<h3>Informações do seu negócio</h3>
+					<p>Agora você precisa nos dar algumas informações, para isso, preencha corretamente os dados abaixo com atenção.</p>
+					<div class="form-group form-row">
+						<div class="col">
+							<label for="business">Nome da Empresa/Negócio</label>
+							<input type="text" name="business" id="business" class="form-control" required>
+						</div>
+						<div class="col">
+							<label for="phone">Telefone (Principal)</label>
+							<input type="text" name="phone" id="phone" class="form-control" required>
+						</div>
+					</div>
+					<div class="form-group form-row">
+						<div class="col">
+							<label for="city">Cidade</label>
+							<input type="text" name="city" id="city" class="form-control" required>
+						</div>
+						<div class="col">
+							<label for="state">Estado</label>
+							<input type="text" name="state" id="state" class="form-control" required>
+						</div>
+						<div class="col-3">
+							<label for="cep">CEP</label>
+							<input type="text" name="cep" id="cep" class="form-control" required>
+						</div>
+					</div>
+					<div class="form-group form-row">
+						<div class="col">
+							<button class="btn btn-link w-100" type="button" id="btnBack1">Voltar</button>	
+						</div>
+						<div class="col">
+							<button class="btn btn-primary w-100" type="button" id="readyForm">Pronto!</button>
+						</div>	
+					</div>
+				</div>
+				<div class="form-3" id="form-3" style="display: none;">
+					<h3>Está tudo certo agora!</h3>
+					<p>Seja bem vindo ao seu novo site. É um grande prazer te ter como parceiro. caso tenha alguma dúvida, entre em contato com a gente! Seu cadastro será concluído assim que apertar em começar.</p>
+					<button class="btn btn-success mx-auto" type="submit">Começar a usar</button>
+				</div>
+				
 			</form>
 			{{#if message}}
 		    	<div class="alert-danger">{{message}}</div>
 			{{/if}}
-			<a href="/auth/login">I have an account</a>
 		</div>
-		
 	</div>
 </section>
+<script>
+	var form1Inputs = document.querySelectorAll('#form-1 input')
+	var form2Inputs = document.querySelectorAll('#form-2 input')
+	var btnNext     = document.querySelector('#nextForm')
+	var btnReady    = document.querySelector('#readyForm')
+	var btnBack1    = document.querySelector('#btnBack1')
+	var form1       = document.querySelector('#form-1')
+	var form2       = document.querySelector('#form-2')
+	var form3       = document.querySelector('#form-3')
+	var textPwd     = document.querySelector('#smallPassword')
+
+	btnNext.onclick = function() {
+		error = 0
+		for (input of form1Inputs){
+			if(input.value.length <= 5){
+				input.style.border = "1px solid red"
+				input.value = ''
+				input.setAttribute('placeholder', 'Campo incompleto ou inválido')
+				error++
+			}	
+			input.onfocus = function() {
+				this.style.border = "1px solid #ced4da"	
+			}
+		}
+		if(form1Inputs[1].value != form1Inputs[2].value){
+			form1Inputs[2].style.border = '1px solid red'
+			textPwd.append('Senhas não coincidem')
+			error++
+		}
+		if(error == 0){
+			form1.style.display = 'none'
+			form2.style.display = 'block'
+		}	
+	}
+	btnReady.onclick = function() {
+		error = 0
+		for (input of form2Inputs){
+			if(input.value.length <= 5){
+				input.style.border = "1px solid red"
+				input.value = ''
+				input.setAttribute('placeholder', 'Campo incompleto ou inválido')
+				error++
+			}
+			input.onfocus = function() {
+				this.style.border = "1px solid #ced4da"	
+			}
+		}
+		if(error == 0){
+			form2.style.display = 'none'
+			form3.style.display = 'block'
+		}
+
+	}
+	btnBack1.onclick = function(){
+		form2.style.display = 'none'
+		form1.style.display = 'block'
+	}
+	
+</script>

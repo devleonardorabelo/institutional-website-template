@@ -22,7 +22,6 @@ passport.use('local-login', new LocalStrategy({
 async (req, username, password, done) => {
 
     User.findOne({ 'username' :  username }, async (err, user) => {
-        console.log(user.password)
         if (err)
             return done(err);
         if (!user)
@@ -63,7 +62,13 @@ async (req, username, password, done) => {
             let passwordHash = await bcrypt.hash(password, 10)
             let newUser = await {
                 username: username,
-                password: passwordHash
+                password: passwordHash,
+                email: req.body.email,
+                business: req.body.business,
+                phone: req.body.phone,
+                city: req.body.city,
+                state: req.body.state,
+                cep: req.body.cep
             } 
             new User(newUser).save(function(err, user) {
                 if (err)

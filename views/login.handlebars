@@ -1,17 +1,23 @@
-<section class="sign-container">
-	<div class="sign">
-		<div class="sign-form">
-			<h2>Hello!</h2>
+<section class="container" style="height: 100vh;">
+	<div class="row h-100">
+		<div class="col-md-4 d-flex flex-column m-auto">
+			<h2>Entre</h2>
 			<form action="/auth/login" method="post">
-		    	<input type="text" name="username" required>
-		    	<input type="password" name="password" required>
-		    	<button type="submit">SIGN IN</button>
+		    	<div class="form-group">
+				  <label for="username">Usuario</label>
+				  <input type="text" name="username" id="username" class="form-control">
+				</div>
+				<div class="form-group">
+				  <label for="password">Senha</label>
+				  <input type="password" name="password" id="password" class="form-control">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Pronto</button>
+				</div>
 			</form>
 			{{#if message}}
-		    	<div class="alert-danger">{{message}}</div>
+		    	<div class="alert alert-danger">{{message}}</div>
 			{{/if}}
-			<a href="/auth/signup">Register now</a>
 		</div>
-		
 	</div>
 </section>
