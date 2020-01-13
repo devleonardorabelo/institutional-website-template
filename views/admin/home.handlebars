@@ -1,5 +1,87 @@
-<section>
-    <h1>Hello, {{user.username}}</h1>
-    <h3>Here is the user profile</h3>
-    <a href="/auth/logout">logout</a>
+<style type="text/css">
+	h2{font-weight: 300; letter-spacing: -1px}
+	.navbar {background: #FFF; border-bottom: 1px solid #e2e2e2;}
+	.nav-item {font-weight: 700; color: #004674 !important }
+	.nav-item-active{background: #004674; color: #e2e2e2 !important}
+	.title-focus{color:#004674; font-weight: bold}
+	.col-item{border: 1px solid #e2e2e2;}
+	.imgback{ width: 40%; position: absolute; right: 20px; bottom: -30px}
+
+	@media (max-width: 767px){
+		.profile{
+			display: none !important
+		}
+		.a-logout{
+			display: block !important
+		}
+	}
+</style>
+
+<nav class="navbar navbar-expand-md navbar-light py-3">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartop" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+	<div class="collapse navbar-collapse" id="navbartop">
+		<div class="navbar-nav">
+			<a class="nav-item nav-link px-4 nav-item-active" href="#">Início</a>
+			<a class="nav-item nav-link px-4" href="#">Suporte</a>
+			<a class="nav-item nav-link px-4" href="#">Documentação</a>
+			<a class="nav-item nav-link px-4 a-logout" href="#" style="display: none">Sair</a>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid mb-5" style="border-bottom: 1px solid #e2e2e2; background-color: #F6F6F6">
+	<div class="container">
+		<div class="row py-4">
+			<div class="col-md-8 py-3 px-0">
+				<h2><span class="title-focus px-">Painel</span> de controle</h2>
+			</div>
+			<div class="col-md-4 d-flex justify-content-end pt-2 profile">
+				<div class="p-2">
+					<h5 class="m-0">Leonardo</h5>
+					<a  class="float-right" href="#">sair</a>
+				</div>
+				<div style="width: 60px; height: 60px; background: #6c63ff; border-radius: 100%"></div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<section class="container p-md-5" style="border: 1px solid #e2e2e2">
+	<p class="mt-3">CONFIGURAÇÕES</p>
+	<div class="row">
+		<div class="col-md-6 mb-5">
+			<div class="col-item p-4 h-100" style="background-color: #F6F6F6">
+				<p style="color:#6c63ff; font-weight: 700">PERFIL</p>
+				<p>Aqui você tem acesso a seu histórico de pagamentos efetuados e pendências</p>
+				<p>Acessar</p>
+				<img class="imgback" src="/img/profile.svg" alt="">
+			</div>
+		</div>
+		<div class="col-md-6 mb-5">
+			<div class="col-item p-4 h-100" style="background-color: #F6F6F6">
+				<p style="color:#6c63ff; font-weight: 700">SUPORTE</p>
+				<p>A velocidade em que seu site é renderizado pelos navegadores está em:</p>
+				<p class="m-0" style="font-weight: 700; font-size: 40pt;">0<span style="font-size: 12pt; font-weight: 400"> chamados</span></p>
+				<img class="imgback" src="/img/message.svg" alt="">
+			</div>
+		</div>
+		<div class="col-md-6 mb-5">
+			<div class="col-item p-4 h-100" style="background-color: #F6F6F6">
+				<p style="color:#6c63ff; font-weight: 700">FINANCEIRO</p>
+				<p>Aqui você tem acesso a seu histórico de pagamentos efetuados e pendências</p>
+				<p>Acessar</p>
+				<img class="imgback" src="/img/cash.svg" alt="">
+			</div>
+		</div>
+		<div class="col-md-6 mb-5">
+			<div class="col-item p-4 h-100" style="background-color: #F6F6F6">
+				<p style="color:#6c63ff; font-weight: 700">DESEMPENHO</p>
+				<p>A velocidade em que seu site é renderizado pelos navegadores está em:</p>
+				<p class="m-0" style="font-weight: 700; font-size: 40pt;">100%</p>
+				<img class="imgback" src="/img/performance.svg" alt="">
+			</div>
+		</div>
+	</div>
 </section>
