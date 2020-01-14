@@ -1,0 +1,29 @@
+<nav class="navbar-top navbar navbar-expand-md navbar-light py-3">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbartop" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+	<div class="collapse navbar-collapse" id="navbartop">
+		<div class="navbar-nav">
+			<a class="nav-item nav-link px-4 nav-item-active" href="/admin">Início</a>
+			<a class="nav-item nav-link px-4" href="#">Suporte</a>
+			<a class="nav-item nav-link px-4" href="#">Documentação</a>
+			<a class="nav-item nav-link px-4 a-logout" href="#">Sair</a>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid p-md-5 mb-5 title">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 py-3 px-0">
+				<h2><span class="title-focus">Mensagens</span> recebidas</h2>
+			</div>
+			<div class="col-md-4 d-flex justify-content-end pt-2 profile">
+				<div class="p-2">
+					<h5 class="m-0">{{user.username}}</h5>
+					<a  class="float-right" href="/auth/logout">sair</a>
+				</div>
+				<div class="avatar"></div>
+			</div>
+		</div>
+	</div>
+</div>

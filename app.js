@@ -9,6 +9,9 @@ const express      = require('express'),
       flash        = require('connect-flash'),
       path         = require('path')
 
+//MODELS
+const Message = require('./models/message')
+
 const app = express()
 
 //BD
@@ -47,6 +50,11 @@ app.get('/', (req, res) => {
     res.render('home',{
       user: req.user
     })
+})
+
+app.post('/newmsg', (req, res) => {
+    new Message(req.body).save()
+    return res.redirect('/')
 })
 
 const port = process.env.PORT || 21068
