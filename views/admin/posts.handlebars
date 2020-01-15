@@ -31,7 +31,7 @@
 <div class="container">
 	<div class="row mb-5">
 		<div class="col">
-			<form action="/admin/posts/add" method="POST">
+			<form action="/admin/addpost" method="POST">
 				<div class="form-group">
 					<label for="image">Imagem do Post</label>
 					<input type="file" class="form-control-file" name="image" id="image">
@@ -63,7 +63,7 @@
 	<div class="row mb-5">
 		{{#each post}}
 			<div class="col-md-4">
-				<div class="card">
+				<a href="/admin/viewpost/{{this.url}}" class="card">
 					<img class="card-img-top" src="/img/thumbs/{{this.image}}">
 					<div class="card-body">
 						<h4 class="card-title">{{this.title}}</h4>
@@ -72,7 +72,7 @@
 					<div class="card-footer">
 						<a href="/admin/delpost/{{this.id}}">Apagar</a>
 					</div>
-				</div>
+				</a>
 			</div>
 		{{else}}
 			<h5>Nenhum post até agora</h5>
