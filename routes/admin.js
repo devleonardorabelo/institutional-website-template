@@ -1,7 +1,8 @@
 const express = require('express'),
       router  = express.Router(),
       Message = require('../models/message')
- 
+      Post    = require('../models/post')
+
 async function verifyUser(req, res, next) {
     if(req.user){
         next()
@@ -14,6 +15,32 @@ router.get('/', verifyUser, (req, res) => {
         user: req.user
     })
 })
+router.get('/posts', verifyUser, async (req, res) => {
+    let posts = await Post.find()
+    res.render('admin/posts', {
+        user: req.user,
+        post: posts
+    })
+})
+router.post('/posts/add', verifyUser, async (req, res) => {
+    let findPost = await Post.findOne({url: req.body.url})
+    if(findPost){
+        res.redirect('/admin/posts')
+        console.log('já existe essa url')
+    }else{
+        new Post(req.body).save()
+        return res.redirect('/admin/posts')
+    }
+})
+
+router.get('/messages', verifyUser, async (req, res) => {
+    let messages = await Message.find()
+    res.render('admin/messages', {
+        user: req.user,
+        message: messages
+    })
+})
+
 router.get('/messages', verifyUser, async (req, res) => {
     let messages = await Message.find()
     res.render('admin/messages', {

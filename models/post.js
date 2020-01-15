@@ -6,8 +6,7 @@ var postSchema = mongoose.Schema({
     description : String,
     image       : String,
     thumbnail   : String,
-    url         : String,
-    date        : Date.now()
+    url         : String
 })
 
 module.exports = mongoose.model('Post', postSchema)

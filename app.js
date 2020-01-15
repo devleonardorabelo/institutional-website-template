@@ -9,10 +9,11 @@ const express      = require('express'),
       flash        = require('connect-flash'),
       path         = require('path')
 
+        const app = express()
+
 //MODELS
 const Message = require('./models/message')
-
-const app = express()
+const Post    = require('./models/post')
 
 //BD
 mongoose.connect('mongodb://localhost:27017/test', {
@@ -46,9 +47,11 @@ app.use('/admin', admin)
 app.use('/auth', auth)
 
 //VIEWS
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    let posts = await Post.find()
     res.render('home',{
-      user: req.user
+      user: req.user,
+      post: posts
     })
 })
 

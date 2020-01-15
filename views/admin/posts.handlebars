@@ -27,3 +27,53 @@
 		</div>
 	</div>
 </div>
+
+<div class="container">
+	<div class="row mb-5">
+		<div class="col">
+			<form action="/admin/posts/add" method="POST">
+				<div class="form-group">
+					<label for="image">Imagem do Post</label>
+					<input type="file" class="form-control-file" name="image" id="image">
+					<small class="form-text text-muted">recomendado: 700 x 460 (px)</small>
+				</div>
+				<div class="form-group">
+					<label for="thumb">Thumbnail do Post</label>
+					<input type="file" class="form-control-file" name="thumbnail" id="thumb">
+					<small class="form-text text-muted">recomendado: 200 x 200 (px)</small>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="title" placeholder="Titulo do Post">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="description" placeholder="Descrição do Post">
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" name="content" placeholder="Escreva aqui o conteúdo do Post"></textarea>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name="url" placeholder="Url do post">
+					<small class="form-text text-muted">exemplo-simples-url-amigavel</small>
+				</div>
+				<button class="btn btn-primary" type="submit">Adicionar</button>			
+			</form>
+		</div>
+	</div>
+
+	<div class="row mb-5">
+		{{#each post}}
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top" src="/img/thumbs/{{this.image}}">
+					<div class="card-body">
+						<h4 class="card-title">{{this.title}}</h4>
+						<p class="card-text">{{this.description}}</p>
+					</div>
+				</div>
+			</div>
+		{{else}}
+			<h5>Nenhum post até agora</h5>
+		{{/each}}
+	</div>
+	
+</div>
