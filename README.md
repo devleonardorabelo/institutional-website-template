@@ -58,7 +58,7 @@ For install all dependencies, use this command:
 
     npm install
     
-Somer error, try to install updated versions:
+Some error? try to install updated versions:
 
     npm install bcryptjs body-parser connect-flash cookie-parser express express-handlebars express-session mongoose passport passport-local
     
