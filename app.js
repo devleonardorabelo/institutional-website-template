@@ -24,8 +24,6 @@ mongoose.connect('mongodb://localhost:27017/test', {
 
 //MORE CONFIGS
 app.use(flash());
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname,'public'))) //PUBLIC DIRECTORY
 app.engine('handlebars', exphbs())
 app.set('view engine', 'handlebars')
