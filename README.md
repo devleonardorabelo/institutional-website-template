@@ -26,10 +26,18 @@ Para instalar todas as dependências, utilize o comando:
     
 Caso esteja ocorrendo algum erro, tente instalar as versões atualizadas:
 
-    npm install bcryptjs body-parser connect-flash cookie-parser express express-handlebars express-session mongoose passport passport-local
-    
- 
-## Dúvidas?
+    bcryptjs
+    body-parser
+    connect-flash
+    cookie-parser
+    express
+    express-handlebars
+    express-session
+    mongoose
+    passport
+    passport-local
+     
+## Alguma dúvida?
 Mande um email para mim: leonardomrabelo@gmail.com
 
 
@@ -63,9 +71,18 @@ For install all dependencies, use this command:
     
 Some error? try to install updated versions:
 
-    npm install bcryptjs body-parser connect-flash cookie-parser express express-handlebars express-session mongoose passport passport-local
+    bcryptjs
+    body-parser
+    connect-flash
+    cookie-parser
+    express
+    express-handlebars
+    express-session
+    mongoose
+    passport
+    passport-local
     
-## Doubts?
+## Any questions?
 Send me an email: leonardomrabelo@gmail.com
 
 
