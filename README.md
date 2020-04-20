@@ -1,5 +1,3 @@
-## Layout
-
 <h1 align="center">(PT-BR)MODELO PARA SITE INSTITUCIONAL</h1>
 <h2 align="center">Express, Express-handlebars, Passport-local, mongoose e outros</h2>
 <hr>
